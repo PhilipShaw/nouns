@@ -173,8 +173,22 @@ def change_password(request):
             update_session_auth_hash(request, form.user)
             return redirect('/userhome/')
         else:
-            return redirect('/change_password/')
+            return redirect('/password_retry/')
     else:
         form = PasswordChangeForm(user=request.user)
         args = {'form': form}
         return render(request, 'change_password.html', args)
+
+def change_password_retry(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect('/userhome/')
+        else:
+            return redirect('/password_retry/')
+    else:
+        form = PasswordChangeForm(user=request.user)
+        args = {'form': form}
+        return render(request, 'change_password_retry.html', args)
