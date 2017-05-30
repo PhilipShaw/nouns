@@ -1,0 +1,109 @@
+
+
+/* ----- Custom Stuff ----- */
+#yeahbaby{
+    width:900px;
+    margin:0px auto;
+    height: 1200px;
+    border: #999 1px dashed;
+}
+
+#yeahbaby > div {
+    position:absolute;
+    width: 280;
+    border: #000 1px solid;
+}
+
+#yeahbaby > div > div{
+    padding: 20px;
+    font-size: 27px;
+    color: D9A800;
+}
+
+/* ----- older custom stuff ----- */
+.cent-cont {
+  margin-left: auto;
+  margin-right: auto
+
+
+}
+
+.treasure {
+  margin-bottom: 20px;
+}
+
+.treasure:last-child {
+  margin-bottom: 0;
+}
+
+.treasure-photo {
+  background: #fdf2e1;
+  float: left;
+  margin-right: 5%;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.treasure-photo-detail {
+  background: #fdf2e1;
+  float: left;
+  margin-right: 5%;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+  width: 50%;
+}
+
+.treasure-photo img {
+  width: 180px;
+  max-height: 100%;
+}
+
+.treasure-table {
+  float: left;
+  margin-top: 10px;
+  width: 45%;
+}
+
+.treasure-table img {
+  margin-right: 10px;
+}
+
+.treasure-table tr {
+  border-bottom: 1px solid #ece4cf;
+}
+
+.treasure-table td,
+.treasure-table th {
+  font-weight: bold;
+  font-size: 1.3em;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  vertical-align: baseline;
+}
+
+.treasure-table th {
+  color: #e0ccb2;
+  white-space: nowrap;
+}
+
+.treasure-table td:last-child {
+  padding-left: 20px;
+  width: 100%;
+}
+
+.fieldWrapper{
+ font-size: 10px;
+ color: #263d2c;
+ font-family: verdana, tahoma, serif;
+ white-space:nowrap;
+ display:inline;
+}
+
+.btn {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}

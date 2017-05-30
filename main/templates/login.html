@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+  {% block body %}
+  <body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+      <form class="form-signin" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" name="Buhhtin">Login</button>
+      <br>
+      <br>
+        <h5><a href={% url 'main:reset_password' %}>Reset Password</a> </h5>
+      </form>
+    </div>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+  </body>
+  {% endblock %}
+</html>

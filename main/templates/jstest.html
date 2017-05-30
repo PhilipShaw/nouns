@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Test</title>
+
+<script>
+function renderGrid(){
+    var blocks = document.getElementById("yeahbaby").children;
+    var pad = 10, cols = 3, newleft, newtop;
+    for (var i = 1; i < blocks.length; i++) {
+        if (i % cols == 0) {
+            newtop = (blocks[i-cols].offsetTop + blocks[i-cols].offsetHeight) + pad;
+            blocks[i].style.top = newtop+"px";
+        }
+        } else {
+            if (blocks[i-cols]) {
+                newtop = (blocks[i-cols].offsetTop + blocks[i-cols].offsetHeight) + pad;
+                blocks[i].style.top = newtop+"px";
+            }
+            newleft = (blocks[i-1].offsetLeft + blocks[i-1].offsetWidth) + pad;
+            blocks[i].style.left = newleft+"px";
+        }
+    }
+}
+window.addEventListener("load", renderGrid, false);
+window.addEventListener("resize", renderGrid, false);
+
+</script>
+<style>
+#yeahbaby{
+    width:900px;
+    margin:0px auto;
+    height: 1200px;
+    border: #999 1px dashed;
+}
+
+#yeahbaby > div {
+    position:absolute;
+    width: 280;
+    border: #000 1px solid;
+    background-color: D9A800;
+}
+
+#yeahbaby > div > div{
+    padding: 20px;
+    font-size: 27px;
+    color: D9A800;
+}
+</style>
+
+</head>
+<body>
+<div id="yeahbaby">
+    <div style="height:200px;"> <div> 1 </div> </div>
+    <div style="height:250px;"> <div> 2 </div> </div>
+    <div style="height:220px;"> <div> 3 </div> </div>
+    <div style="height:260px;"> <div> 4 </div> </div>
+    <div style="height:280px;"> <div> 5 </div> </div>
+    <div style="height:290px;"> <div> 6 </div> </div>
+    <div style="height:230px;"> <div> 7 </div> </div>
+
+</div>
+
+</body>
+</html>

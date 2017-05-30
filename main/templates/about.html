@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+<html>
+<body>
+{% block body %}
+    <div class="container">
+      <h2>What's the point of this site?</h2>
+          Nouns is a simple web app that allows users to guess
+        how much another person admires something on a 1-10 scale. After a user creates
+        content for someone else, the recipient can rate that content.
+        <br>
+        <br>
+        Each unit of content is called a "noun," because most content will be based on
+        a person, place, thing or an activity (also called a gerund). Below is an example noun.
+        <br>
+        <br>
+        <img src={% static 'images/example_noun.png' %} width="350px" height="auto">
+        <br>
+        <br>
+        Rapport is earned after the recipient rates your noun. The more accurate a noun
+        creator's guess is, the more a user's rapport increases. A perfect guess is worth
+        three points.
+        <br>
+        <h4>Rapport: <span class="label label-success">{{user.rapport.rapport_score}}</span></h4>
+        <h4>Perfect Guess: <img src={% static 'ionicons/png/512/ribbon-a.png' %} width="20" height="auto" /></h4>
+        <br>
+        <br>
+        <br>
+        About the creator: Hi, my name is Phil. I'm an aspiring developer. I created this site to gain a better
+        understanding of how the Django framework operates. This site is built using Django 1.11 and Bootstrap
+        handles most of the HTML and CSS.
+        <br>
+        <br>
+        <img src="http://i.imgur.com/Txa0YRK.jpg" width="250px" height="auto">
+
+
+      <br>
+    </div>
+    <div class="container">
+      <div class="row">
+
+      </div>
+
+      <footer class="footer">
+        <p> &copy;   2017 Nouns.</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+{% endblock %}
+</body>
+</html>

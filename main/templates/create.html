@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block body %}
+  <body>
+
+    <div class="container">
+
+
+
+      <div class="container">
+         <h3>Create a new noun here. </h3>
+        <p><h5>Guess what the recipient will rate it (from 0.1 to 10.0). The closer your guess, the more your rapport will increase.</h5></p>
+      </div>
+      <br>
+
+      <div class="container">
+        <form class="form-signin" method="post">
+          {% csrf_token %}
+            {{ form.as_p }}
+          <button type="submit" name="Buhhtin">Create</button>
+        </form>
+        <br>
+        <br>
+        <script>
+        (function() {
+          var cx = '001988938247830551439:ibxr-soxy-0';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+        </script>
+        <gcse:search defaultToImageSearch="true"></gcse:search>
+
+
+      </div>
+
+
+      <!--
+      <div class="container">
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="URL">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Title">
+          </div>          
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+      <input type="text" class="span2" value="" data-slider-min="-20" data-slider-max="20" data-slider-step="1" data-slider-value="-14" data-slider-orientation="vertical" data-slider-selection="after"data-slider-tooltip="hide">
+      </div> -->
+      <br>
+      <br>
+
+
+      <footer class="footer">
+        <p>&copy; 2017 Nouns.</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+{% endblock %}
+</html>

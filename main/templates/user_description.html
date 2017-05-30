@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body %}
+<body>
+<div class="container">
+    <h3>Current tagline: {{ user.userprofile.description }}</h3>
+    <br>
+
+    <form class="form-signin" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" name="Buhhtin">Change</button>
+    </form>
+</div>
+<div class="container">
+
+    <footer class="footer">
+      <p> &copy;   2017 Nouns.</p>
+    </footer>
+
+</div> <!-- /container -->
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+</body>
+{% endblock %}

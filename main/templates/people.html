@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+<html>
+<body>
+{% block body %}
+    <div class="container">
+      <h3>You're logged in as {{ user }}. You can find other users on this page.</h3>
+      <h6>Click <a href="/userhome/user_edit">HERE</a> to edit your account info.</h6>
+      <br>
+    </div>
+
+    <yomama>
+    <main>
+		{% for person in everyone %}
+		<a href="{% url 'main:view_profile_with_pk' pk=person.pk %}" title="{{ person.name }}">
+			<article>
+				<name>{{ person }}</name>
+				<p>{{ person.userprofile.description }}</p>
+				<figure2>
+					<img src={% static 'ionicons/png/512/image.png' %} width="80" height="auto" >
+					<figcaption></figcaption>
+
+				</figure2>
+                <h5>Rapport: <span class="label label-success">{{person.rapport.rapport_score}}</span>
+                 &nbsp;  |  &nbsp; Perfects <img src={% static 'ionicons/png/512/ribbon-a.png' %} width="20" height="auto" /> : {{person.rapport.medals}}</h5>
+			</article>
+		</a>
+        {% endfor %}
+
+	</main>
+	</yomama>
+
+      <!--<div class="container">-->
+      <!--<div class="row">-->
+          <!--{% for person in everyone %}-->
+          <!--<div class="col-xs-6">-->
+          <!--<div class="thumbnail">-->
+              <!--<br>-->
+            <!--<img src="http://img3.wikia.nocookie.net/__cb20120915054011/fmabyond/images/0/0b/Blank_avatar_240x240.gif" alt="{{ person }}" width="150" height="auto">-->
+            <!--<div class="caption">-->
+              <!--<h2>{{ person.name }}</h2>-->
+              <!--<p><a href="{% url 'main:view_profile_with_pk' pk=person.pk %}"> {{ person }}</a></p>-->
+              <!--<p><a href="{% url 'main:view_profile_with_pk' pk=person.pk %}" class="btn btn-primary" role="button">Profile</a></p>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--{% endfor %}-->
+      <!--</div>-->
+
+      <div class="container">
+      <footer class="footer">
+        <p> &copy;   2017 Nouns.</p>
+      </footer>
+      </div>
+    </div> <!-- /container -->
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+{% endblock %}
+</body>
+</html>

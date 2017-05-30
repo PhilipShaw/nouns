@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block body %}
+<body>
+<br>
+<br>
+  <div class="container">
+    <form class="form-signin" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" name="Buhhtin">Begin</button>
+      </form>
+      </div>
+
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+{% endblock %}
