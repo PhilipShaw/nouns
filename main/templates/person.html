@@ -24,22 +24,24 @@
 
 					<figcaption>~ {{ noun.created_by }}</figcaption>
 				</figure>
-				{% if noun.rating != None %}
+				<nametwo>
+				{% if noun.virgin != True %}
 
                 {% if noun.rating_guess >= 7 %}
-                <span class="label label-success">{{ noun.rating_guess }}</span> Guess
+                Guess <span class="label label-success">{{ noun.rating_guess }}</span>
                 {% else %}
-                <span class="label label-danger">{{ noun.rating_guess }}</span> Guess
+                Guess <span class="label label-danger">{{ noun.rating_guess }}</span>
                 {% endif %}
-
-                &nbsp; <span class="label label-primary">{{ noun.rating }}</span> Actual
                 {% if noun.rating == noun.rating_guess %}
                 <img src={% static 'ionicons/png/512/ribbon-a.png' %} width="20" height="auto" />
                 {% endif %}
+                &nbsp; Actual <span class="label label-primary">{{ noun.rating }}</span>
+
                 {% else %}
-                <span class="label label-warning">New</span> Click to rate
+                <span class="label label-warning">New</span>
 
                 {% endif %}
+                </nametwo>
 			</article>
 		</a>
 		{% endif %}
@@ -49,7 +51,6 @@
 	</yomama>
 
     <div class="container">
-
 
       <footer class="footer">
         <p> &copy;   2017 Nouns.</p>

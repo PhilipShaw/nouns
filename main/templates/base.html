@@ -57,7 +57,7 @@
                 <li><a href={% url 'main:create' %}>+Noun</a></li>
                 <li><a href={% url 'main:people' %}>People</a></li>
                 <li><a href={% url 'main:logout' %}>Logout</a></li>
-                <li><button class="btn btn-success">{{user.rapport.rapport_score}}</button></li>
+                <li><button class="btn btn-success">{{request.user.rapport.rapport_score}}</button></li>
                 {% else %}
                 <li><a href={% url 'main:about' %}>About</a></li>
                 <li><a href={% url 'main:login' %}>Login</a></li>

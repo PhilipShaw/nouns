@@ -6,7 +6,7 @@
 {% block body %}
     <div class="container">
       <br>
-      <name>Hey, {{ user.first_name }}. This is your nouns page.</name>
+      <h2>Hey, {{ user.first_name }}. This is your nouns page.</h2>
       <h6>Click <a href="/userhome/user_edit">HERE</a> to edit your account info.</h6>
       <br>
       <h5> {{ user.userprofile.description }} <a href="/user_description">(Edit tagline)</a> &nbsp; | &nbsp; {{ user.email }} </h5>
@@ -15,43 +15,62 @@
        &nbsp;  |  &nbsp; <img src={% static 'ionicons/png/512/ribbon-a.png' %} width="20" height="auto" /> : {{user.rapport.medals}}</h4>
     </div>
 
-    <yomama>
+    <!--<yomama>-->
     <main>
 		{% for noun in nouns reversed %}
 		{% if noun.create_for == user %}
 		<a href="{% url 'main:nounpage' noun.id %}" title="{{ noun.name }}">
-			<article>
-				<name>{{ noun.name }}</name>
+			<!--<article>-->
+				<name>{{ noun.name }} {% if noun.aud_vid %}
+                    <img src="http://ic1.joydownload.com/content/icons/181/54a3963f2df83.png" width="38" height="38" /> {% endif %} </name>
 				<h5>{{ noun.item_type }}</h5>
 				<p>{{ noun.description }}</p>
-				<figure>
-					<img src="{{ noun.image_url }}" alt="https://placehold.it/480x360" >
 
-					<figcaption>~ {{ noun.created_by }}</figcaption>
+
+                <figure>
+                    {% if noun.aud_vid %}
+                    <vidholder>
+
+                    <iframe width="300" height="169" src="{{ noun.image_url }}" frameborder="0" ></iframe>
+                    </vidholder>
+                    {% elif noun.aud_vid == False %}
+
+                    <img src="{{ noun.image_url }}" alt="Bad Link" >
+                    {% endif %}
+
+
+                    <figcaption>~ {{ noun.created_by }}</figcaption>
 				</figure>
-				{% if noun.rating != None %}
+
+
+            <nametwo>
+				{% if noun.virgin != True %}
 
                 {% if noun.rating_guess >= 7 %}
-                <span class="label label-success">{{ noun.rating_guess }}</span> Guess
+                Guess <span class="label label-success">{{ noun.rating_guess }}</span>
                 {% else %}
-                <span class="label label-danger">{{ noun.rating_guess }}</span> Guess
+                Guess <span class="label label-danger">{{ noun.rating_guess }}</span>
                 {% endif %}
-
-                &nbsp; <span class="label label-primary">{{ noun.rating }}</span> Actual
                 {% if noun.rating == noun.rating_guess %}
                 <img src={% static 'ionicons/png/512/ribbon-a.png' %} width="20" height="auto" />
                 {% endif %}
+                &nbsp; Actual <span class="label label-primary">{{ noun.rating }}</span>
+
                 {% else %}
                 <span class="label label-warning">New</span> Click to rate
 
                 {% endif %}
-			</article>
+
+
+
+                </nametwo>
+			<!--</article>-->
 		</a>
 		{% endif %}
         {% endfor %}
 
 	</main>
-	</yomama>
+	<!--</yomama>-->
     <div class="container">
       <footer class="footer">
         <p> &copy;   2017 Nouns.</p>

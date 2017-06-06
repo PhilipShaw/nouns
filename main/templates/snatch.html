@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+<html>
+<div>
+{% block body %}
+
+<div class="container">
+  <h2>{{ user.first_name }}, you can use "{{ noun.name }}" as a template for your own noun.</h2>
+  <br>
+</div>
+
+    <div id="rapper" style="text-align: center">
+    <div id="yourdiv" style="display: inline-block;">
+    <yomama>
+    <main>
+
+		<a title="{{ noun.name }}">
+			<article>
+				<div id="realign" style="text-align: left">
+                <name>{{ noun.name }}</name>
+				<h5>{{ noun.item_type }}</h5>
+				<p>{{ noun.description }}</p>
+				<figure>
+
+                    {% if noun.aud_vid %}
+                    <vidholder>
+                    <iframe width="300" height="169" src="{{ noun.image_url }}" frameborder="0" ></iframe>
+                    </vidholder>
+                    {% elif noun.aud_vid == False %}
+                    <img src="{{ noun.image_url }}" alt="Bad Link" >
+                    {% endif %}
+                    <figcaption>~ {{ user }}</figcaption>
+
+				</figure>
+				<div class="col-md-3">
+                <form class="form-inline" method="post" >
+                {% csrf_token %}
+                    {{ form|crispy }}
+                    <br>
+                <button type="submit" class="btn btn-success" name="Buhhtin">Create</button>
+
+                </form>
+                </div>
+                </div>
+            </article>
+		</a>
+
+
+	</main>
+	</yomama>
+    </div>
+    </div>
+
+    <div class="container">
+      <footer class="footer">
+        <p> &copy;   2017 Nouns.</p>
+      </footer>
+    </div>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+{% endblock %}
+</body>
+</html>

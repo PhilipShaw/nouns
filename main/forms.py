@@ -38,6 +38,12 @@ class UserEditForm(UserChangeForm):
         )
 
 class MakeNoun(forms.ModelForm):
+    # name = forms.CharField(widget=forms.TextInput(
+    #     attrs={
+    #         'class': 'form-control',
+    #         'placeholder': 'Write a post...'
+    #     }
+    # ))
     class Meta:
         model = Noun
         fields = (
@@ -50,13 +56,19 @@ class MakeNoun(forms.ModelForm):
             #'created_by'
         )
 
-# class ScoreForm(forms.ModelForm): #not being used right now
-#     class Meta:
-#         model = NounScore
-#         fields = (
-#             'rating_score',
-#             'user',
-#         )
+class SnatchForm(forms.ModelForm):
+
+    class Meta:
+        model = Noun
+        fields = (
+            'name',
+            'image_url',
+            'description',
+            'item_type',
+            'rating_guess',
+            'create_for',
+            #'created_by'
+        )
 
 class ScoreForm2(forms.ModelForm):
     class Meta:

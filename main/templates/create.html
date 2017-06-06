@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
+
 {% block body %}
   <body>
 
@@ -13,14 +15,19 @@
       </div>
       <br>
 
-      <div class="container">
+      <div class="col-md-6">
         <form class="form-signin" method="post">
           {% csrf_token %}
-            {{ form.as_p }}
-          <button type="submit" name="Buhhtin">Create</button>
+            {{ form|crispy }}
+          <button type="submit" class="btn btn-primary" name="Buhhtin">Create</button>
         </form>
         <br>
         <br>
+
+
+
+      </div>
+      <div class="container">
         <script>
         (function() {
           var cx = '001988938247830551439:ibxr-soxy-0';
@@ -33,10 +40,7 @@
         })();
         </script>
         <gcse:search defaultToImageSearch="true"></gcse:search>
-
-
       </div>
-
 
       <!--
       <div class="container">
@@ -54,7 +58,7 @@
       <br>
       <br>
 
-
+    <div class="container">
       <footer class="footer">
         <p>&copy; 2017 Nouns.</p>
       </footer>

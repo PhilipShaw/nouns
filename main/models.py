@@ -16,6 +16,8 @@ class Noun(models.Model):
     rating = models.DecimalField(max_digits=10, decimal_places=1, null=True)
     #True if noun is unrated, False if noun has been previously rated:
     virgin = models.BooleanField(default=True)
+    #Used to filter video links. False by default, True if link starts with https://www.youtube
+    aud_vid = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -50,6 +52,8 @@ def create_profile(sender, **kwargs):
 def link_rapport(sender, **kwargs):
     if kwargs['created']:
         user_rapport = Rapport.objects.create(user=kwargs['instance'])
+
+
 
 
 # def create_noun(sender, **kwargs):

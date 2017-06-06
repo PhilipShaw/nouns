@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+
 <html>
 <body>
 {% block body %}
     <div class="container">
-      <h2>What's the point of this site?</h2>
+
+        <h2>What's the point of this site?</h2>
           Nouns is a simple web app that allows users to guess
         how much another person admires something on a 1-10 scale. After a user creates
         content for someone else, the recipient can rate that content.
@@ -14,9 +16,59 @@
         a person, place, thing or an activity (also called a gerund). Below is an example noun.
         <br>
         <br>
-        <img src={% static 'images/example_noun.png' %} width="350px" height="auto">
+        <main>
+
+		<a href="{% url 'main:nounpage' noun.id %}" title="{{ noun.name }}">
+			<!--<article>-->
+				<name>{{ noun.name }} {% if noun.aud_vid %} (Video) {% endif %} </name>
+				<h5>{{ noun.item_type }}</h5>
+				<p>{{ noun.description }}</p>
+
+
+
+                    {% if noun.aud_vid %}
+
+
+                    <iframe height="183" width="300" src="{{ noun.image_url }}" frameborder="0" ></iframe>
+
+                    {% elif noun.aud_vid == False %}
+                    <figure>
+                    <img src="{{ noun.image_url }}" alt="https://placehold.it/480x360" >
+                    {% endif %}
+
+
+                <figcaption>~ {{ noun.created_by }}</figcaption>
+				</figure>
+
+
+            <nametwo>
+				{% if noun.virgin != True %}
+
+                {% if noun.rating_guess >= 7 %}
+                Guess <span class="label label-success">{{ noun.rating_guess }}</span>
+                {% else %}
+                Guess <span class="label label-danger">{{ noun.rating_guess }}</span>
+                {% endif %}
+                {% if noun.rating == noun.rating_guess %}
+                <img src={% static 'ionicons/png/512/ribbon-a.png' %} width="20" height="auto" />
+                {% endif %}
+                &nbsp; Actual <span class="label label-primary">{{ noun.rating }}</span>
+
+                {% else %}
+                <span class="label label-warning">New</span> Click to rate
+
+                {% endif %}
+
+
+
+                </nametwo>
+			<!--</article>-->
+		</a>
+
+
+	</main>
         <br>
-        <br>
+
         Rapport is earned after the recipient rates your noun. The more accurate a noun
         creator's guess is, the more a user's rapport increases. A perfect guess is worth
         three points.
@@ -37,6 +89,7 @@
       <br>
     </div>
     <div class="container">
+        <br>
       <div class="row">
 
       </div>

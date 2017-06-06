@@ -1,45 +1,69 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
 <html>
 <div>
 {% block body %}
+<body>
+    <div class="container" id="usercontent">
+    {% if request.user == noun.create_for %}
+        <h2>{{ user.first_name }}, rate or delete this noun.</h2>
+    {% else %}
+        <h2>Hey {{ user.first_name }}, like this noun?</h2>
+        <h4>You can use it as a template.</h4>
+    {% endif %}
+    {% if noun.created_by == request.user %}
+        <a href="{% url 'main:delete_noun' noun.id %}" class="btn btn-danger" role="button">Delete Noun</a>
+    {% elif noun.create_for == request.user %}
+        <a href="{% url 'main:delete_noun' noun.id %}" class="btn btn-danger" role="button">Delete Noun</a>
+    {% endif %}
+        <a href="{% url 'main:snatch' noun.id %}" class="btn btn-primary" role="button">Clone Noun</a>
 
-<div class="container">
-      <h2>{{ user.first_name }}, give this noun a rating.</h2>
-      <br>
     </div>
-    <div class="container">
-    <yomama>
-      <div class="row">
-        <div class="col-xs-6">
-        <div class="thumbnail">
-          <img src="{{ noun.image_url }}" alt="{{ noun.name }}" >
-          <div class="caption">
-            <h3>{{ noun.name }}</h3>
-            <h5>{{ noun.item_type }}</h5>
-            <p>{{ noun.description }}</p>
 
-            <!-- The form below produces the "Rating" field -->
+    <main>
+		<a title="{{ noun.name }}" class="a">
+			<article>
+				<div id="realign" style="text-align: left">
+                <name>{{ noun.name }} {% if noun.aud_vid %}
+                    <img src="http://ic1.joydownload.com/content/icons/181/54a3963f2df83.png" width="38" height="38" /> {% endif %} </name>
+				<h5>{{ noun.item_type }}</h5>
+				<p>{{ noun.description }}</p>
+				<figure>
 
-            <form class="form-inline" method="post">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit" class="btn btn-primary">Rate</button>
-            </form>
+                    {% if noun.aud_vid %}
+                    <vidholder>
+                    <iframe width="300" height="169" src="{{ noun.image_url }}" frameborder="0" ></iframe>
+                    </vidholder>
+                    {% elif noun.aud_vid == False %}
+                    <img src="{{ noun.image_url }}" alt="Bad Link" >
+                    {% endif %}
 
-          </div>
-        </div>
-        </div>
-      </div>
-    </yomama>
-    </div>
+					<figcaption>~ {{ noun.created_by }}</figcaption>
+				</figure>
+				{% if request.user == noun.create_for %}
+                <form class="form-inline" method="post" value='9'>
+                <div class="col-md-6">
+                {% csrf_token %}
+                {{form|crispy}}
+                    <button type="submit" class="btn btn-success" name="Buhhtin">Rate</button>
+                </div>
+                </form>
+                {% endif %}
+                </div>
+            </article>
+		</a>
+	</main>
+
     <div class="container">
       <footer class="footer">
         <p> &copy;   2017 Nouns.</p>
       </footer>
     </div>
-
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+
 {% endblock %}
 </body>
 </html>

@@ -3,8 +3,8 @@ from django.contrib.auth.forms import PasswordChangeForm
 from main.forms import RegForm, UserEditForm
 from django.contrib.auth.models import User
 from django.contrib.auth import update_session_auth_hash
-from .models import Noun, NounScore, Rapport, UserProfile
-from .forms import MakeNoun, ScoreForm2, UserProfileEdit
+from .models import Noun, Rapport, UserProfile
+from .forms import MakeNoun, ScoreForm2, UserProfileEdit, SnatchForm
 
 def index (request):
     return render(request, "index.html")
@@ -22,8 +22,10 @@ def login (request):
     return render(request, "login.html", args)
 
 def about (request):
+    nouns = Noun.objects.get(pk=34)
+    noun = get_object_or_404(Noun, pk=34)
     args = {'about': about}
-    return render(request, "about.html", args)
+    return render(request, "about.html", {'nouns': nouns, 'noun': noun}, args)
 
 def create (request):
     if request.method == 'POST':
@@ -31,12 +33,55 @@ def create (request):
         if form.is_valid():
             form_shell = form.save(commit=False)
             form_shell.created_by = request.user
+            # form_shell.save(commit=False)
+            if form_shell.image_url.startswith('https://www.youtube'):
+                if "watch?v=" in form_shell.image_url:
+                    form_shell.image_url = form_shell.image_url.replace("watch?v=","embed/")
+                    form_shell.aud_vid = True
+
+                elif "embed" in form_shell.image_url:
+                    form_shell.aud_vid = True
+
             form_shell.save()
-            #form.save()
         return redirect('/userhome')
     else:
         form = MakeNoun()
     return render(request, "create.html", {'form': form})
+
+def delete_noun(request, id):
+    if request.user.is_authenticated():
+        getrid = Noun.objects.get(pk=id)
+        go = getrid.create_for.id
+        if request.user == getrid.created_by and request.user != getrid.create_for:
+            getrid.delete()
+            return redirect('/userhome/' + str(go))
+
+        elif request.user == getrid.create_for:
+            getrid.delete()
+            return redirect('/userhome/')
+
+    else:
+        return redirect('/login')
+
+def snatch(request, noun_id):
+    nouns = Noun.objects.all()
+    noun = get_object_or_404(Noun, pk=noun_id)
+    args = {'user': request.user}
+    if request.user.is_authenticated():
+        if request.method == 'POST':
+            form = SnatchForm(request.POST)
+            if form.is_valid():
+                form_shell = form.save(commit=False)
+                form_shell.created_by = request.user
+                form_shell.save()
+                # form.save()
+            return redirect('/all')
+        else:
+            form = SnatchForm(initial={'name': noun.name, 'image_url': noun.image_url, 'description': noun.description,
+                                       'item_type': noun.item_type})
+        return render(request, "snatch.html", {'nouns': nouns, 'noun': noun,'form': form}, args)
+    else:
+        return redirect('/login')
 
 def all (request):
     rapport = Rapport(User)
