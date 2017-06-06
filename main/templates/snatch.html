@@ -18,7 +18,8 @@
 		<a title="{{ noun.name }}">
 			<article>
 				<div id="realign" style="text-align: left">
-                <name>{{ noun.name }}</name>
+                <name>{{ noun.name }} {% if noun.aud_vid %}
+                    <img src="http://ic1.joydownload.com/content/icons/181/54a3963f2df83.png" width="38" height="38" /> {% endif %} </name>
 				<h5>{{ noun.item_type }}</h5>
 				<p>{{ noun.description }}</p>
 				<figure>

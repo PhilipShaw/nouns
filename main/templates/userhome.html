@@ -15,7 +15,6 @@
        &nbsp;  |  &nbsp; <img src={% static 'ionicons/png/512/ribbon-a.png' %} width="20" height="auto" /> : {{user.rapport.medals}}</h4>
     </div>
 
-    <!--<yomama>-->
     <main>
 		{% for noun in nouns reversed %}
 		{% if noun.create_for == user %}
@@ -70,7 +69,7 @@
         {% endfor %}
 
 	</main>
-	<!--</yomama>-->
+
     <div class="container">
       <footer class="footer">
         <p> &copy;   2017 Nouns.</p>
